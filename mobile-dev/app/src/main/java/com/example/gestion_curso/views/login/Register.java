@@ -1,19 +1,10 @@
 package com.example.gestion_curso.views.login;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestion_curso.config.Database;
 import com.google.android.material.button.MaterialButton;
@@ -22,7 +13,7 @@ import com.tuapp.miclaseapp.R;
 
 public class Register extends AppCompatActivity {
 
-    private TextInputEditText usernameInput, passwordInput;
+    private TextInputEditText editFullName, editEmail, usernameInput, passwordInput;
     private AutoCompleteTextView roleDropdown;
     private MaterialButton registerButton;
     private Database dbHelper;
@@ -32,13 +23,14 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        usernameInput = findViewById(R.id.edit_username);
+        editFullName = findViewById(R.id.edit_username); // Nombre completo
+        editEmail = findViewById(R.id.etCorreo); // Correo
+        usernameInput = findViewById(R.id.edit_user); // Nombre de usuario
         passwordInput = findViewById(R.id.edit_password);
         roleDropdown = findViewById(R.id.auto_complete_roles);
-
         registerButton = findViewById(R.id.btnRegistrar);
-        dbHelper = new Database(this);
 
+        dbHelper = new Database(this);
 
         String[] roles = {"docente", "alumno"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(
@@ -47,23 +39,24 @@ public class Register extends AppCompatActivity {
                 roles
         );
         roleDropdown.setAdapter(adapter);
-
-// Opcional, fuerza a mostrar el dropdown al hacer clic
         roleDropdown.setOnClickListener(v -> roleDropdown.showDropDown());
+
         registerButton.setOnClickListener(v -> {
+            String fullName = editFullName.getText().toString().trim();
+            String email = editEmail.getText().toString().trim();
             String username = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
             String role = roleDropdown.getText().toString().trim();
 
-            if (username.isEmpty() || password.isEmpty() || role.isEmpty()) {
+            if (fullName.isEmpty() || email.isEmpty() || username.isEmpty() || password.isEmpty() || role.isEmpty()) {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            boolean success = dbHelper.insertUser(username, password, role);
+            boolean success = dbHelper.insertUser(fullName, email, username, password, role);
             if (success) {
                 Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
-                finish(); // Cierra y vuelve al login
+                finish();
             } else {
                 Toast.makeText(this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
             }

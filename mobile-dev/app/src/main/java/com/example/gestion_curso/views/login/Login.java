@@ -5,11 +5,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.example.gestion_curso.config.Database;
 import com.example.gestion_curso.model.User;
@@ -20,7 +16,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.tuapp.miclaseapp.R;
 
 public class Login extends AppCompatActivity {
- //   private Database db;
+
     private TextInputEditText usernameInput, passwordInput;
     private MaterialButton loginButton;
     private Database dbHelper;
@@ -34,10 +30,12 @@ public class Login extends AppCompatActivity {
         passwordInput = findViewById(R.id.edit_password);
         loginButton = findViewById(R.id.button_login);
         dbHelper = new Database(this);
+
         TextView goToRegister = findViewById(R.id.goToRegister);
         goToRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, Register.class));
         });
+
         loginButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
@@ -45,11 +43,15 @@ public class Login extends AppCompatActivity {
             User user = dbHelper.authenticate(username, password);
 
             if (user != null) {
+                Intent intent;
                 if ("docente".equals(user.getRole())) {
-                    startActivity(new Intent(this, Docente.class));
-                } else if ("alumno".equals(user.getRole())) {
-                    startActivity(new Intent(this, Alumno.class));
+                    intent = new Intent(this, Docente.class);
+                } else {
+                    intent = new Intent(this, Alumno.class);
                 }
+                // Pasar el nombre completo del usuario a la siguiente pantalla
+                intent.putExtra("nombre_usuario", user.getNombre());
+                startActivity(intent);
                 finish();
             } else {
                 Toast.makeText(this, "Credenciales inválidas", Toast.LENGTH_SHORT).show();
