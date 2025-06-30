@@ -10,16 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#D6F1FF"> <!-- Azul claro -->
-        <TextView
-            android:id="@+id/textNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/topAppBar"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Hola, usuario"
-            android:textSize="18sp"
-            android:textColor="#000000" />
+
         <!-- App Bar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -43,7 +34,6 @@
 
     <!-- Menú lateral -->
     <com.google.android.material.navigation.NavigationView
-
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
