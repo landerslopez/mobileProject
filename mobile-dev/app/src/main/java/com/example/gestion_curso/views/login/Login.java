@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.EditText;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,8 +18,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.tuapp.miclaseapp.R;
 
 public class Login extends AppCompatActivity {
-
-    private TextInputEditText usernameInput, passwordInput;
+    private EditText usernameInput, passwordInput;
+    //private TextInputEditText usernameInput, passwordInput;
     private MaterialButton loginButton;
     private Database dbHelper;
 

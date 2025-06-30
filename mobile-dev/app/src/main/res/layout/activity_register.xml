@@ -1,35 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp">
+    android:background="@drawable/registerfondo">
+    <ImageButton
+        android:id="@+id/btnVolver"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/rounded_background"
+        android:padding="-30dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/volver"
+        android:contentDescription="Botón de imagen" />
+
+
+    <TextView
+        android:id="@+id/registrarNombreCompleto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="80dp"
+        android:gravity="center"
+        android:text="Registro"
+        android:textColor="@color/white"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+
+        android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre de usuario"
-            android:layout_marginTop="16dp">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/edit_user"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Nombre completo">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="170dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Nombre completo"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_username"
@@ -38,24 +55,53 @@
                 android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Correo electrónico"
-            android:layout_marginTop="16dp">
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Nombre de usuario"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etCorreo"
+                android:id="@+id/edit_user"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textPersonName" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:hint="Correo electrónico"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="filled">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                app:boxBackgroundColor="@android:color/white"
+                app:boxBackgroundMode="filled" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
             android:hint="Contraseña"
-            android:layout_marginTop="16dp">
+            app:endIconMode="password_toggle"
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="filled">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_password"
@@ -64,12 +110,17 @@
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/roleDropdownLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
             android:hint="Selecciona un rol"
-            android:layout_marginTop="16dp">
+            app:boxBackgroundColor="@android:color/white"
+            app:boxBackgroundMode="filled">
 
             <AutoCompleteTextView
                 android:id="@+id/auto_complete_roles"
@@ -81,12 +132,42 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnRegistrar"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrarse"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
-            style="@style/Widget.MaterialComponents.Button"
+            android:layout_marginEnd="24dp"
+            android:backgroundTint="@color/boton_azul"
+            android:text="Registrarse"
             app:cornerRadius="8dp" />
 
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:id="@+id/redessociales"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/facebook" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/instagram" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/google" />
+    </LinearLayout>
+
+</RelativeLayout>

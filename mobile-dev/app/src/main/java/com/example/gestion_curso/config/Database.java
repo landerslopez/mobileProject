@@ -10,7 +10,7 @@ import com.example.gestion_curso.model.User;
 
 public class Database extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "usuarios.db";
-    private static final int DATABASE_VERSION = 2; // ¡IMPORTANTE! Incrementamos la versión
+    private static final int DATABASE_VERSION = 2;
 
     public Database(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -63,8 +63,40 @@ public class Database extends SQLiteOpenHelper {
             user.setUsername(username);
             user.setPassword(password);
             user.setRole(cursor.getString(cursor.getColumnIndexOrThrow("rol")));
+            cursor.close();
             return user;
         }
+        cursor.close();
         return null;
+    }
+
+    // ✔ Verifica si el nombre de usuario ya existe
+    public boolean userExists(String username) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE username = ?", new String[]{username});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+    // ✔ Verifica si la contraseña ya está en uso
+    public boolean passwordExists(String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE password = ?", new String[]{password});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
+    }
+
+    // (Opcional) ✔ Verifica si el correo ya está registrado
+    public boolean emailExists(String correo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE correo = ?", new String[]{correo});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+        db.close();
+        return exists;
     }
 }
