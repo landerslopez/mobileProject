@@ -1,0 +1,59 @@
+package com.example.gestion_curso.views.login;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.example.gestion_curso.config.Database;
+import com.example.gestion_curso.model.User;
+import com.example.gestion_curso.views.alumno.Alumno;
+import com.example.gestion_curso.views.docente.Docente;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.tuapp.miclaseapp.R;
+
+public class Login extends AppCompatActivity {
+ //   private Database db;
+    private TextInputEditText usernameInput, passwordInput;
+    private MaterialButton loginButton;
+    private Database dbHelper;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+
+        usernameInput = findViewById(R.id.edit_username);
+        passwordInput = findViewById(R.id.edit_password);
+        loginButton = findViewById(R.id.button_login);
+        dbHelper = new Database(this);
+        TextView goToRegister = findViewById(R.id.goToRegister);
+        goToRegister.setOnClickListener(v -> {
+            startActivity(new Intent(this, Register.class));
+        });
+        loginButton.setOnClickListener(v -> {
+            String username = usernameInput.getText().toString().trim();
+            String password = passwordInput.getText().toString().trim();
+
+            User user = dbHelper.authenticate(username, password);
+
+            if (user != null) {
+                if ("docente".equals(user.getRole())) {
+                    startActivity(new Intent(this, Docente.class));
+                } else if ("alumno".equals(user.getRole())) {
+                    startActivity(new Intent(this, Alumno.class));
+                }
+                finish();
+            } else {
+                Toast.makeText(this, "Credenciales inválidas", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+}
