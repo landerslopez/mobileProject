@@ -13,3 +13,16 @@
 .externalNativeBuild
 .cxx
 local.properties
+*.xml
+*.java
+*.png
+/.idea
+*.kts
+*.pro
+*.jpg
+*.webp
+*.properties
+*.jar
+*.toml
+gradlew
+*.bat
