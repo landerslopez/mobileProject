@@ -11,7 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.abraham.loginapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
-
 public class Alumno extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
@@ -36,9 +35,10 @@ public class Alumno extends AppCompatActivity {
             textoNombre.setText("Hola, " + nombreUsuario);
         } else {
             toolbar.setTitle("Bienvenido");
+            textoNombre.setText("Hola");
         }
 
-        // Manejar clic en el ícono de menú
+        // Abrir menú lateral
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
