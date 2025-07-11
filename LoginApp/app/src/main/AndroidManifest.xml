@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.abraham.loginapp">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <application
         android:allowBackup="true"
@@ -13,42 +12,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginApp"
         tools:targetApi="31">
+        <activity
+            android:name="com.abraham.loginapp.views.Alumno"
+            android:exported="false" />
+        <activity
+            android:name="com.abraham.loginapp.views.Docente"
+            android:exported="false" />
+        <activity
+            android:name="com.abraham.loginapp.views.Register"
+            android:exported="false" />
 
-        <!-- Actividades principales -->
-        <activity android:name="com.abraham.loginapp.views.Login"
+        <activity
+            android:name="com.abraham.loginapp.views.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="com.abraham.loginapp.views.Register"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.IntermedioActivity"
-            android:exported="false" />
-
-        <!-- Actividades del usuario docente y alumno -->
-        <activity android:name="com.abraham.loginapp.views.Docente"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.Alumno"
-            android:exported="false" />
-
-        <!-- Actividades funcionales del docente -->
-        <activity android:name="com.abraham.loginapp.views.DetalleCursoDocente"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.AsignarTareaActivity"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.VerTareasActivity"
-            android:exported="false" />
-
-        <activity android:name="com.abraham.loginapp.views.CalificarActivity"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.TomarAsistenciaActivity"
-            android:exported="false" />
-        <activity android:name="com.abraham.loginapp.views.AreasDocenteActivity"
-            android:exported="false" />
-
     </application>
 
 </manifest>

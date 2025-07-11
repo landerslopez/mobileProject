@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.EditText;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.abraham.loginapp.R;
@@ -13,8 +14,10 @@ import com.abraham.loginapp.config.Database;
 import com.abraham.loginapp.model.User;
 import com.google.android.material.button.MaterialButton;
 
+
 public class Login extends AppCompatActivity {
     private EditText usernameInput, passwordInput;
+    //private TextInputEditText usernameInput, passwordInput;
     private MaterialButton loginButton;
     private Database dbHelper;
 
@@ -23,37 +26,31 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Referencias a la UI
         usernameInput = findViewById(R.id.edit_username);
         passwordInput = findViewById(R.id.edit_password);
         loginButton = findViewById(R.id.button_login);
         dbHelper = new Database(this);
 
-        // Ir al registro
         TextView goToRegister = findViewById(R.id.goToRegister);
         goToRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, Register.class));
         });
 
-        // Acción del botón login
         loginButton.setOnClickListener(v -> {
             String username = usernameInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
 
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Por favor ingrese usuario y contraseña", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            // Autenticación
-            User user = dbHelper.login(username, password);
+            User user = dbHelper.authenticate(username, password);
 
             if (user != null) {
-                // Pasamos también el ID del usuario
-                Intent intent = new Intent(this, IntermedioActivity.class);
-                intent.putExtra("id_usuario", user.getId()); // 🔁 ESTE FALTABA
+                Intent intent;
+                if ("docente".equals(user.getRole())) {
+                    intent = new Intent(this, Docente.class);
+                } else {
+                    intent = new Intent(this, Alumno.class);
+                }
+                // Pasar el nombre completo del usuario a la siguiente pantalla
                 intent.putExtra("nombre_usuario", user.getNombre());
-                intent.putExtra("tipo_usuario", user.getRole());
                 startActivity(intent);
                 finish();
             } else {

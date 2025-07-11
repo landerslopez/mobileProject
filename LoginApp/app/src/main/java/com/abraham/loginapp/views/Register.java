@@ -1,7 +1,5 @@
 package com.abraham.loginapp.views;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.widget.ArrayAdapter;
@@ -78,11 +76,14 @@ public class Register extends AppCompatActivity {
                 return;
             }
 
+            // Validación 4: contraseña única
+            if (dbHelper.passwordExists(password)) {
+                Toast.makeText(this, "La contraseña ya está registrada. Usa una diferente", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             // Si pasa todas las validaciones
-            long resultado = dbHelper.registrarUsuario(fullName, email, username, password, role);
-            boolean success = resultado != -1;
-
+            boolean success = dbHelper.insertUser(fullName, email, username, password, role);
             if (success) {
                 Toast.makeText(this, "Registro exitoso", Toast.LENGTH_SHORT).show();
                 finish();
