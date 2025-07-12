@@ -11,7 +11,6 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import com.abraham.loginapp.R;
 import com.google.android.material.appbar.MaterialToolbar;
 
-
 public class Alumno extends AppCompatActivity {
 
     private DrawerLayout drawerLayout;
