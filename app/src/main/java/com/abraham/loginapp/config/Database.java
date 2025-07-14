@@ -7,96 +7,168 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.abraham.loginapp.model.User;
+import com.abraham.loginapp.model.Asistencia;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Database extends SQLiteOpenHelper {
-    private static final String DATABASE_NAME = "usuarios.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final String DATABASE_NAME    = "app.db";
+    private static final int    DATABASE_VERSION = 2;
 
-    public Database(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public Database(Context ctx) {
+        super(ctx, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE usuarios (" +
-                "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                "nombre TEXT NOT NULL, " +
-                "correo TEXT NOT NULL, " +
-                "username TEXT NOT NULL UNIQUE, " +
-                "password TEXT NOT NULL, " +
-                "rol TEXT NOT NULL)";
-        db.execSQL(sql);
+        // 1) Tabla de usuarios
+        db.execSQL(
+                "CREATE TABLE usuarios (" +
+                        " id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " nombre TEXT NOT NULL," +
+                        " correo TEXT NOT NULL," +
+                        " username TEXT NOT NULL UNIQUE," +
+                        " password TEXT NOT NULL," +
+                        " rol TEXT NOT NULL" +
+                        ")"
+        );
+        // datos precargados
+        db.execSQL("INSERT INTO usuarios (nombre,correo,username,password,rol) " +
+                "VALUES('Administrador','admin@ejemplo.com','admin','admin','docente')");
+        db.execSQL("INSERT INTO usuarios (nombre,correo,username,password,rol) " +
+                "VALUES('Juan Pérez','juan@ejemplo.com','juan','12345','alumno')");
 
-        // Insertar datos de prueba
-        db.execSQL("INSERT INTO usuarios (nombre, correo, username, password, rol) " +
-                "VALUES ('Administrador', 'admin@ejemplo.com', 'admin', 'admin', 'docente')");
-        db.execSQL("INSERT INTO usuarios (nombre, correo, username, password, rol) " +
-                "VALUES ('Juan Pérez', 'juan@ejemplo.com', 'juan', '12345', 'alumno')");
+        // 2) Tabla de asistencia
+        db.execSQL(
+                "CREATE TABLE asistencia (" +
+                        " id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                        " user_id INTEGER," +
+                        " fecha TEXT NOT NULL," +
+                        " estado TEXT NOT NULL," +
+                        " FOREIGN KEY(user_id) REFERENCES usuarios(id)" +
+                        ")"
+        );
+        // (Opcional: datos de ejemplo)
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, int oldV, int newV) {
+        // Si incrementas DATABASE_VERSION, define aquí migraciones reales.
+        // Para simplificar, borramos y recreamos todo:
+        db.execSQL("DROP TABLE IF EXISTS asistencia");
         db.execSQL("DROP TABLE IF EXISTS usuarios");
         onCreate(db);
     }
 
-    public boolean insertUser(String nombre, String correo, String username, String password, String rol) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("nombre", nombre);
-        values.put("correo", correo);
-        values.put("username", username);
-        values.put("password", password);
-        values.put("rol", rol);
-        long result = db.insert("usuarios", null, values);
-        return result != -1;
+
+    // ----------------------
+    // CRUD Usuarios
+    // ----------------------
+
+    public boolean insertarUsuario(
+            String nombre,
+            String correo,
+            String username,
+            String password,
+            String rol
+    ) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("nombre",   nombre);
+        cv.put("correo",   correo);
+        cv.put("username", username);
+        cv.put("password", password);
+        cv.put("rol",      rol);
+        long id = db.insert("usuarios", null, cv);
+        db.close();
+        return id != -1;
     }
 
-    public User authenticate(String username, String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM usuarios WHERE username = ? AND password = ?", new String[]{username, password});
-        if (cursor.moveToFirst()) {
-            User user = new User();
-            user.setId(cursor.getInt(cursor.getColumnIndexOrThrow("id")));
-            user.setNombre(cursor.getString(cursor.getColumnIndexOrThrow("nombre")));
-            user.setCorreo(cursor.getString(cursor.getColumnIndexOrThrow("correo")));
-            user.setUsername(username);
-            user.setPassword(password);
-            user.setRole(cursor.getString(cursor.getColumnIndexOrThrow("rol")));
-            cursor.close();
-            return user;
+    public User autenticar(String username, String password) {
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM usuarios WHERE username=? AND password=?",
+                new String[]{ username, password }
+        );
+        if (c.moveToFirst()) {
+            User u = new User();
+            u.setId(      c.getInt( c.getColumnIndexOrThrow("id")));
+            u.setNombre(  c.getString(c.getColumnIndexOrThrow("nombre")));
+            u.setCorreo(  c.getString(c.getColumnIndexOrThrow("correo")));
+            u.setUsername(username);
+            u.setPassword(password);
+            u.setRole(    c.getString(c.getColumnIndexOrThrow("rol")));
+            c.close();
+            db.close();
+            return u;
         }
-        cursor.close();
+        c.close();
+        db.close();
         return null;
     }
 
-    // ✔ Verifica si el nombre de usuario ya existe
     public boolean userExists(String username) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE username = ?", new String[]{username});
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT id FROM usuarios WHERE username=?",
+                new String[]{ username }
+        );
+        boolean ex = c.getCount() > 0;
+        c.close();
         db.close();
-        return exists;
+        return ex;
     }
 
-    // ✔ Verifica si la contraseña ya está en uso
-    public boolean passwordExists(String password) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE password = ?", new String[]{password});
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
-        db.close();
-        return exists;
-    }
-
-    // (Opcional) ✔ Verifica si el correo ya está registrado
     public boolean emailExists(String correo) {
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT id FROM usuarios WHERE correo = ?", new String[]{correo});
-        boolean exists = cursor.getCount() > 0;
-        cursor.close();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT id FROM usuarios WHERE correo=?",
+                new String[]{ correo }
+        );
+        boolean ex = c.getCount() > 0;
+        c.close();
         db.close();
-        return exists;
+        return ex;
+    }
+
+    // ----------------------
+    // CRUD Asistencia
+    // ----------------------
+
+    public long agregarAsistencia(
+            int userId,
+            String fecha,
+            String estado
+    ) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("user_id", userId);
+        cv.put("fecha",    fecha);
+        cv.put("estado",   estado);
+        long id = db.insert("asistencia", null, cv);
+        db.close();
+        return id;
+    }
+
+    public List<Asistencia> obtenerAsistencias(int userId) {
+        List<Asistencia> lista = new ArrayList<>();
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor c = db.rawQuery(
+                "SELECT * FROM asistencia WHERE user_id=? ORDER BY fecha DESC",
+                new String[]{ String.valueOf(userId) }
+        );
+        while (c.moveToNext()) {
+            Asistencia a = new Asistencia();
+            a.setId(     c.getInt( c.getColumnIndexOrThrow("id")));
+            a.setUsuarioId(
+                    c.getInt( c.getColumnIndexOrThrow("user_id")));
+            a.setFecha(  c.getString(c.getColumnIndexOrThrow("fecha")));
+            a.setEstado( c.getString(c.getColumnIndexOrThrow("estado")));
+            lista.add(a);
+        }
+        c.close();
+        db.close();
+        return lista;
     }
 }
