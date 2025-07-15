@@ -28,7 +28,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "gestion.db")
+                                    AppDatabase.class, "organizaya_escolar.db")
                             // Callback para insertar datos iniciales al crear la DB por primera vez
                             .addCallback(sRoomDatabaseCallback)
                             .build();
