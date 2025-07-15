@@ -1,14 +1,30 @@
-package com.abraham.loginapp.model;
+package com.abraham.loginapp.data.database.entities;
 
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+@Entity(tableName = "usuarios")
 public class User {
+    @PrimaryKey(autoGenerate = true)
     private int id;
+
+    @ColumnInfo(name = "nombre")
     private String nombre;
+
+    @ColumnInfo(name = "correo")
     private String correo;
+
+    @ColumnInfo(name = "username")
     private String username;
+
+    @ColumnInfo(name = "password")
     private String password;
+
+    @ColumnInfo(name = "rol")
     private String role;
 
-    // Getters y setters
+    // Getters y setters (Room los necesita para leer/escribir los datos)
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

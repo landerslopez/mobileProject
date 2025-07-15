@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.room)
     alias(libs.plugins.android.application)
 }
 
@@ -26,9 +27,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }
 
 dependencies {
@@ -41,6 +46,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime:2.6.2")
 
     implementation ("androidx.cardview:cardview:1.0.0")
+
+    // Dependencias de Room
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
+
+    // Dependencias de Lifecycle (LiveData y ViewModel)
+    implementation(libs.lifecycle.livedata)
+    implementation(libs.lifecycle.viewmodel)
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
