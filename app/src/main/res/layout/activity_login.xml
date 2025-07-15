@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/fondologin">
@@ -14,25 +15,26 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="198dp"
+        android:layout_height="@dimen/login_header_height"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:padding="28dp">
+        android:padding="@dimen/padding_large">
 
         <ImageView
-            android:layout_width="216dp"
-            android:layout_height="98dp"
+            android:layout_width="@dimen/logo_width"
+            android:layout_height="@dimen/logo_height"
             android:layout_gravity="center"
-            android:src="@drawable/logoescuelalisto" />
+            android:src="@drawable/logoescuelalisto"
+            android:contentDescription="@string/logo_description" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="sans-serif-medium"
-            android:text="App Educativa"
+            android:text="@string/app_educational_title"
             android:textColor="@color/white"
-            android:textSize="32sp"
+            android:textSize="@dimen/text_size_app_title"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -41,39 +43,38 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="-20dp"
-        app:cardCornerRadius="28dp">
+        android:layout_marginBottom="@dimen/card_margin_bottom"
+        app:cardCornerRadius="@dimen/card_corner_radius">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:padding="28dp">
+            android:padding="@dimen/padding_large">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Bienvenido"
+                android:text="@string/welcome_title"
                 android:textColor="@color/my_primary"
-                android:textSize="32sp"
+                android:textSize="@dimen/text_size_xlarge"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Por favor inicia sesión con tu información" />
+                android:text="@string/login_instructions" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="@dimen/spacing_large" />
 
-            <!-- Campo de Usuario con TextInputLayout -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Usuario"
+                android:text="@string/label_username"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -87,20 +88,19 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_usuario_wrapper"
                     android:inputType="text"
-                    android:minHeight="48dp"
-                    android:paddingStart="12dp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:minHeight="@dimen/min_height_input_field"
+                    android:paddingStart="@dimen/padding_start_input_field"
+                    android:paddingEnd="@dimen/padding_start_input_field" /> </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="@dimen/spacing_large" />
 
-            <!-- Campo de Contraseña con TextInputLayout -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Contraseña"
+                android:text="@string/label_password"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
@@ -114,75 +114,83 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:minHeight="48dp" />
+                    android:minHeight="@dimen/min_height_input_field" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
                 <CheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:alpha="0.7"
-                    android:text="Recordar" />
+                    android:text="@string/remember_me" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:text="Olvide mi contraseña" />
-            </RelativeLayout>
+                    android:text="@string/forgot_password" />
+            </LinearLayout>
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="@dimen/spacing_small" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_login"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Acceder"
-                app:cornerRadius="32dp" />
+                android:layout_height="@dimen/button_height_login"
+                android:text="@string/button_access"
+                app:cornerRadius="@dimen/button_corner_radius_login" />
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="@dimen/spacing_small" />
 
             <TextView
                 android:id="@+id/goToRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="¿No tienes cuenta? Regístrate"
+                android:text="@string/no_account_register"
                 android:textColor="?attr/colorPrimary"
-                android:layout_marginTop="12dp" />
+                android:layout_marginTop="@dimen/margin_top_register_link" />
 
             <LinearLayout
                 android:id="@+id/socialicons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center">
+                android:gravity="center"
+                tools:ignore="UseCompoundDrawables">
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/facebook" />
+                    android:layout_width="@dimen/social_icon_size"
+                    android:layout_height="@dimen/social_icon_size"
+                    android:layout_margin="@dimen/margin_social_icon"
+                    android:src="@drawable/facebook"
+                    android:contentDescription="@string/facebook_icon_description" />
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/instagram" />
+                    android:layout_width="@dimen/social_icon_size"
+                    android:layout_height="@dimen/social_icon_size"
+                    android:layout_margin="@dimen/margin_social_icon"
+                    android:src="@drawable/instagram"
+                    android:contentDescription="@string/instagram_icon_description" />
 
                 <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_margin="20dp"
-                    android:src="@drawable/google" />
+                    android:layout_width="@dimen/social_icon_size"
+                    android:layout_height="@dimen/social_icon_size"
+                    android:layout_margin="@dimen/margin_social_icon"
+                    android:src="@drawable/google"
+                    android:contentDescription="@string/google_icon_description" />
             </LinearLayout>
 
         </LinearLayout>

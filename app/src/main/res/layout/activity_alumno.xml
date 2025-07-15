@@ -5,49 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Contenido principal -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#D6F1FF"> <!-- Azul claro -->
-        <TextView
-            android:id="@+id/textNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/topAppBar"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:text="Hola, usuario"
-            android:textSize="18sp"
-            android:textColor="#000000" />
-        <!-- App Bar -->
+        android:background="@color/light_blue_background">
+
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:title=""
+            app:title="@string/empty_string"
             app:navigationIcon="@drawable/ic_menu" />
 
-        <!-- Avatar -->
+        <TextView
+            android:id="@+id/textNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/topAppBar"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:text="@string/hello_user"
+            android:textSize="@dimen/text_size_medium"
+            android:textColor="@color/black" />
+
         <ImageView
             android:id="@+id/avatarImage"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
             android:layout_alignParentEnd="true"
-            android:layout_margin="16dp"
+            android:layout_margin="@dimen/margin_medium"
             android:src="@drawable/avatar"
             android:scaleType="centerCrop"
-            android:background="@drawable/circle_background" />
+            android:background="@drawable/circle_background"
+            android:contentDescription="@string/user_avatar_description"/>
     </RelativeLayout>
 
-    <!-- Menú lateral -->
     <com.google.android.material.navigation.NavigationView
-
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@android:color/white"
+        android:background="@color/white"
         app:menu="@menu/drawer_menu" />
 </androidx.drawerlayout.widget.DrawerLayout>

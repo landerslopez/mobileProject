@@ -9,7 +9,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="boton_azul">#1976D2</color> <!-- Azul Material -->
 
+    <color name="light_blue_background">#D6F1FF</color>
+    <color name="button_blue">#3F51B5</color>
 
-    <color name="my_primary">#5E35B1</color>
+    <color name="my_primary">#6200EE</color>
     <color name="my_secondary">#673AB7</color>
 </resources>
