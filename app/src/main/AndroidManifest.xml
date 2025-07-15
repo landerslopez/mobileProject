@@ -13,17 +13,17 @@
         android:theme="@style/Theme.LoginApp"
         tools:targetApi="31">
         <activity
-            android:name="com.abraham.loginapp.features.dashboard.ui.DashboardStudentActivity"
+            android:name="com.grupoC.orgaedu.features.dashboard.ui.DashboardStudentActivity"
             android:exported="false" />
         <activity
-            android:name="com.abraham.loginapp.features.dashboard.ui.DashboardProfessorActivity"
+            android:name="com.grupoC.orgaedu.features.dashboard.ui.DashboardProfessorActivity"
             android:exported="false" />
         <activity
-            android:name="com.abraham.loginapp.features.auth.ui.RegisterActivity"
+            android:name="com.grupoC.orgaedu.features.auth.ui.RegisterActivity"
             android:exported="false" />
 
         <activity
-            android:name="com.abraham.loginapp.features.auth.ui.LoginActivity"
+            android:name="com.grupoC.orgaedu.features.auth.ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

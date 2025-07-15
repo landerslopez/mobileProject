@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.abraham.loginapp"
+    namespace = "com.grupoC.orgaedu"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.abraham.loginapp"
+        applicationId = "com.grupoC.orgaedu"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "LoginApp"
+rootProject.name = "OrgaEDU"
 include(":app")
