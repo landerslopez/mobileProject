@@ -30,4 +30,11 @@
     <dimen name="button_corner_radius_login">32dp</dimen>
     <dimen name="margin_top_register_link">12dp</dimen>
 
+    <dimen name="padding_medium">16dp</dimen>
+    <dimen name="margin_bottom_medium">16dp</dimen>
+    <dimen name="margin_bottom_small">8dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+
+    <dimen name="text_size_large">24sp</dimen>
+
 </resources>

@@ -2,22 +2,29 @@ package com.grupoC.orgaedu.data.database;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
-import androidx.annotation.NonNull;
 
+import com.grupoC.orgaedu.data.database.converters.DateConverter;
+import com.grupoC.orgaedu.data.database.dao.TaskDao;
+import com.grupoC.orgaedu.data.database.entities.Task;
 import com.grupoC.orgaedu.data.database.dao.UserDao;
 import com.grupoC.orgaedu.data.database.entities.User;
 
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class, Task.class}, version = 4, exportSchema = false)
+@TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
+    public abstract TaskDao taskDao();
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -28,7 +35,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    AppDatabase.class, "organizaya_escolar.db")
+                                    AppDatabase.class, "orgaedu.db")
                             // Callback para insertar datos iniciales al crear la DB por primera vez
                             .addCallback(sRoomDatabaseCallback)
                             .build();
@@ -39,16 +46,14 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     // Callback para precargar la base de datos con datos iniciales.
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static final RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
 
             databaseWriteExecutor.execute(() -> {
-                UserDao userDao = INSTANCE.userDao();
-
-                // Limpiar cualquier dato existente (opcional, solo para pruebas si se recrea la DB)
-                // userDao.deleteAllUsers(); // Tendrías que añadir este método en UserDao si lo necesitas
+                final UserDao userDao = INSTANCE.userDao();
+                final TaskDao taskDao = INSTANCE.taskDao();
 
                 // Insertar usuarios de prueba
                 User adminUser = new User();
@@ -66,6 +71,29 @@ public abstract class AppDatabase extends RoomDatabase {
                 juanUser.setPassword("12345");
                 juanUser.setRole("alumno");
                 userDao.insert(juanUser);
+
+                // --- ¡Insertar tareas de prueba! ---
+                final Task task1 = new Task();
+                task1.setTitulo("Tarea de Matemáticas");
+                task1.setDescripcion("Completar ejercicios del capítulo 3 del libro.");
+                // Establecer la fecha de vencimiento 5 días en el futuro
+                task1.setFechaVencimiento(new Date(System.currentTimeMillis() + 86400000L * 5));
+                task1.setIdCurso(1);
+                task1.setIdUsuarioAsignado(juanUser.getId()); // Asignar al usuario Juan
+                task1.setEstadoEntrega("Pendiente");
+                task1.setEstadoCompletado(false);
+                taskDao.insertar(task1);
+
+                final Task task2 = new Task(); // Usa el nombre de clase Task
+                task2.setTitulo("Propuesta de Proyecto");
+                task2.setDescripcion("Enviar la propuesta para el proyecto final.");
+                // Establecer la fecha de vencimiento 10 días en el futuro
+                task2.setFechaVencimiento(new Date(System.currentTimeMillis() + 86400000L * 10));
+                task2.setIdCurso(2);
+                task2.setIdUsuarioAsignado(juanUser.getId()); // Asignar al usuario Juan
+                task2.setEstadoEntrega("Pendiente");
+                task2.setEstadoCompletado(false);
+                taskDao.insertar(task2);
             });
         }
     };

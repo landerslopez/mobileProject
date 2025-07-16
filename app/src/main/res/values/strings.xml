@@ -29,4 +29,10 @@
     <string name="button_access">Acceder</string>
     <string name="no_account_register">¿No tienes cuenta? Regístrate</string>
 
+    <string name="task_management_title">Gestión de Tareas</string>
+    <string name="task_title_hint">Título de la tarea</string>
+    <string name="task_description_hint">Descripción de la tarea (opcional)</string>
+    <string name="add_task_button_text">Añadir Tarea</string>
+    <string name="my_tasks_title">Mis Tareas:</string>
+
 </resources>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_medium"
+    tools:context=".features.tasks.ui.TaskActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_medium"
+        android:text="@string/task_management_title"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/task_title_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_small"
+        android:hint="@string/task_title_hint"
+        android:inputType="textCapSentences" />
+
+    <EditText
+        android:id="@+id/task_description_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_medium"
+        android:gravity="top"
+        android:hint="@string/task_description_hint"
+        android:inputType="textMultiLine"
+        android:lines="3" />
+
+    <Button
+        android:id="@+id/add_task_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_medium"
+        android:text="@string/add_task_button_text" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/margin_bottom_small"
+        android:text="@string/my_tasks_title"
+        android:textSize="@dimen/text_size_medium"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/tasks_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/light_grey_background"
+        android:padding="@dimen/padding_small" />
+</LinearLayout>

@@ -22,6 +22,10 @@
             android:name="com.grupoC.orgaedu.features.auth.ui.RegisterActivity"
             android:exported="false" />
 
+        <activity android:name="com.grupoC.orgaedu.features.tasks.ui.TaskActivity"
+            android:exported="false">
+        </activity>
+
         <activity
             android:name="com.grupoC.orgaedu.features.auth.ui.LoginActivity"
             android:exported="true">
@@ -31,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
