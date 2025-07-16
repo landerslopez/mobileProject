@@ -1,58 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/padding_medium"
     tools:context=".features.tasks.ui.TaskActivity">
 
-    <TextView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:title="@string/task_management_title"
+            app:navigationIcon="@drawable/ic_menu" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_medium"
+            android:layout_below="@id/topAppBar">
+
+            <EditText
+                android:id="@+id/task_title_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_small"
+                android:hint="@string/task_title_hint"
+                android:inputType="textCapSentences"
+                android:autofillHints="none"/>
+
+            <EditText
+                android:id="@+id/task_description_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_medium"
+                android:gravity="top"
+                android:hint="@string/task_description_hint"
+                android:inputType="textMultiLine"
+                android:lines="3"
+                android:autofillHints="none"/>
+
+            <Button
+                android:id="@+id/add_task_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_medium"
+                android:text="@string/add_task_button_text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_bottom_small"
+                android:text="@string/my_tasks_title"
+                android:textSize="@dimen/text_size_medium"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/tasks_list_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:background="@color/light_grey_background"
+                android:padding="@dimen/padding_small" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_medium"
-        android:text="@string/task_management_title"
-        android:textSize="@dimen/text_size_large"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@color/white"
+        app:menu="@menu/drawer_menu" />
 
-    <EditText
-        android:id="@+id/task_title_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_small"
-        android:hint="@string/task_title_hint"
-        android:inputType="textCapSentences" />
-
-    <EditText
-        android:id="@+id/task_description_input"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_medium"
-        android:gravity="top"
-        android:hint="@string/task_description_hint"
-        android:inputType="textMultiLine"
-        android:lines="3" />
-
-    <Button
-        android:id="@+id/add_task_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_medium"
-        android:text="@string/add_task_button_text" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/margin_bottom_small"
-        android:text="@string/my_tasks_title"
-        android:textSize="@dimen/text_size_medium"
-        android:textStyle="bold" />
-
-    <ListView
-        android:id="@+id/tasks_list_view"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/light_grey_background"
-        android:padding="@dimen/padding_small" />
-</LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

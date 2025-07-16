@@ -34,5 +34,12 @@
     <string name="task_description_hint">Descripción de la tarea (opcional)</string>
     <string name="add_task_button_text">Añadir Tarea</string>
     <string name="my_tasks_title">Mis Tareas:</string>
+    <string name="navigation_drawer_open">Abrir cajón de navegación</string>
+    <string name="navigation_drawer_close">Cerrar cajón de navegación</string>
+
+    <string name="nav_inicio_title">Inicio</string>
+    <string name="nav_areas_title">Áreas</string>
+    <string name="nav_asistencia_title">Asistencia</string>
+    <string name="nav_tareas_title">Tareas</string>
 
 </resources>
