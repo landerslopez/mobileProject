@@ -14,17 +14,20 @@ import com.grupoC.orgaedu.data.database.dao.TaskDao;
 import com.grupoC.orgaedu.data.database.entities.Task;
 import com.grupoC.orgaedu.data.database.dao.UserDao;
 import com.grupoC.orgaedu.data.database.entities.User;
+import com.grupoC.orgaedu.data.database.dao.GradeDao;
+import com.grupoC.orgaedu.data.database.entities.Grade;
 
 import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Task.class}, version = 5, exportSchema = false)
+@Database(entities = {User.class, Task.class,Grade.class}, version = 6, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract TaskDao taskDao();
+    public abstract GradeDao gradeDao();
     private static volatile AppDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -54,6 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 final UserDao userDao = INSTANCE.userDao();
                 final TaskDao taskDao = INSTANCE.taskDao();
+                final GradeDao gradeDao = INSTANCE.gradeDao();
 
                 // Insertar usuarios de prueba
                 User adminUser = new User();
