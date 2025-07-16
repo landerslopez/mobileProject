@@ -42,11 +42,11 @@ public class DashboardStudentActivity extends AppCompatActivity {
         // Observar nombre de usuario
         viewModel.getUserName().observe(this, nombreUsuario -> {
             if (nombreUsuario != null && !nombreUsuario.isEmpty()) {
-                toolbar.setTitle("Hola, " + nombreUsuario);
+                toolbar.setTitle("Bienvenido, " + nombreUsuario);
                 textNombre.setText("Hola, " + nombreUsuario);
             } else {
                 toolbar.setTitle("Bienvenido");
-                textNombre.setText("Bienvenido");
+                textNombre.setText("Hola");
             }
         });
 

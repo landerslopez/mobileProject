@@ -42,7 +42,7 @@ public class DashboardProfessorActivity extends AppCompatActivity {
                 textNombre.setText("Hola, " + nombreUsuario);
             } else {
                 toolbar.setTitle("Bienvenido");
-                textNombre.setText("Bienvenido");
+                textNombre.setText("Hola");
             }
         });
 

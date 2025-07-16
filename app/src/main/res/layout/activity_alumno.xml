@@ -8,7 +8,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_blue_background">
+        android:background="@drawable/fondo_estudiante_1"> <!-- Imagen de fondo aplicada -->
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
@@ -40,7 +40,7 @@
             android:background="@drawable/circle_background"
             android:contentDescription="@string/user_avatar_description" />
 
-        <!-- NUEVO: Mensaje motivacional -->
+        <!-- Mensaje motivacional -->
         <TextView
             android:id="@+id/textMensajeMotivacional"
             android:layout_width="match_parent"
