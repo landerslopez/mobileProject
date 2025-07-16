@@ -29,4 +29,11 @@
     <string name="button_access">Acceder</string>
     <string name="no_account_register">¿No tienes cuenta? Regístrate</string>
 
+    <string name="hint_curso">Curso</string>
+    <string name="hint_descripcion">Descripción</string>
+    <string name="hint_nota">Nota</string>
+    <string name="btn_guardar_nota">Guardar Nota</string>
+
+
 </resources>
+

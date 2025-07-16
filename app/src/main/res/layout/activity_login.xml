@@ -48,7 +48,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="@dimen/padding_large">
 
@@ -90,7 +90,8 @@
                     android:inputType="text"
                     android:minHeight="@dimen/min_height_input_field"
                     android:paddingStart="@dimen/padding_start_input_field"
-                    android:paddingEnd="@dimen/padding_start_input_field" /> </com.google.android.material.textfield.TextInputLayout>
+                    android:paddingEnd="@dimen/padding_start_input_field" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <View
                 android:layout_width="wrap_content"
@@ -106,8 +107,8 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:endIconMode="password_toggle"
-                app:boxBackgroundMode="filled">
+                app:boxBackgroundMode="filled"
+                app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edit_password"
@@ -120,8 +121,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -160,9 +161,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginTop="@dimen/margin_top_register_link"
                 android:text="@string/no_account_register"
-                android:textColor="?attr/colorPrimary"
-                android:layout_marginTop="@dimen/margin_top_register_link" />
+                android:textColor="?attr/colorPrimary" />
 
             <LinearLayout
                 android:id="@+id/socialicons"
@@ -175,22 +176,22 @@
                     android:layout_width="@dimen/social_icon_size"
                     android:layout_height="@dimen/social_icon_size"
                     android:layout_margin="@dimen/margin_social_icon"
-                    android:src="@drawable/facebook"
-                    android:contentDescription="@string/facebook_icon_description" />
+                    android:contentDescription="@string/facebook_icon_description"
+                    android:src="@drawable/facebook" />
 
                 <ImageView
                     android:layout_width="@dimen/social_icon_size"
                     android:layout_height="@dimen/social_icon_size"
                     android:layout_margin="@dimen/margin_social_icon"
-                    android:src="@drawable/instagram"
-                    android:contentDescription="@string/instagram_icon_description" />
+                    android:contentDescription="@string/instagram_icon_description"
+                    android:src="@drawable/instagram" />
 
                 <ImageView
                     android:layout_width="@dimen/social_icon_size"
                     android:layout_height="@dimen/social_icon_size"
                     android:layout_margin="@dimen/margin_social_icon"
-                    android:src="@drawable/google"
-                    android:contentDescription="@string/google_icon_description" />
+                    android:contentDescription="@string/google_icon_description"
+                    android:src="@drawable/google" />
             </LinearLayout>
 
         </LinearLayout>

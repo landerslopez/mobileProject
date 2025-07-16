@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/purple_100"
+    android:padding="12dp"
+    android:layout_marginBottom="8dp">
+
+    <!-- Header del curso -->
+    <TextView
+        android:id="@+id/txtCurso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Curso"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/purple_700"
+        android:padding="8dp" />
+
+    <!-- RecyclerView para las notas del curso -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerNotas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:nestedScrollingEnabled="false" />
+</LinearLayout>

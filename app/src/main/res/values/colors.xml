@@ -14,4 +14,11 @@
 
     <color name="my_primary">#6200EE</color>
     <color name="my_secondary">#673AB7</color>
+    <color name="nota_reprobada">#FFCDD2</color> <!-- Rojo claro -->
+    <color name="nota_aprobada">#C8E6C9</color> <!-- Verde claro -->
+    <color name="gray_100">#F5F5F5</color>
+    <color name="green_light">#A5D6A7</color>
+    <color name="red_light">#EF9A9A</color>
+    <!-- Colores existentes -->
+    <color name="purple_100">#E1BEE7</color> <!-- morado claro -->
 </resources>
