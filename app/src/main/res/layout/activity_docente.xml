@@ -5,42 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <!-- CONTENIDO PRINCIPAL CON SCROLLVIEW -->
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_blue_background">
+        android:fillViewport="true">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:title="@string/empty_string"
-            app:navigationIcon="@drawable/ic_menu" />
+            android:paddingBottom="32dp"
+            android:background="@color/light_blue_background">
 
-        <TextView
-            android:id="@+id/textNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/topAppBar"
-            android:layout_marginTop="@dimen/margin_medium"
-            android:layout_marginStart="@dimen/margin_medium"
-            android:text="@string/hello_user"
-            android:textSize="@dimen/text_size_medium"
-            android:textColor="@color/black" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:title="@string/empty_string"
+                app:navigationIcon="@drawable/ic_menu" />
 
-        <ImageView
-            android:id="@+id/avatarImage"
-            android:layout_width="@dimen/avatar_size"
-            android:layout_height="@dimen/avatar_size"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="@dimen/margin_medium"
-            android:src="@drawable/avatar"
-            android:scaleType="centerCrop"
-            android:background="@drawable/circle_background"
-            android:contentDescription="@string/user_avatar_description"/>
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/textNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topAppBar"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginStart="@dimen/margin_medium"
+                android:text="@string/hello_user"
+                android:textSize="@dimen/text_size_medium"
+                android:textColor="@color/black" />
 
+            <ImageView
+                android:id="@+id/avatarImage"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="@dimen/margin_medium"
+                android:layout_below="@id/topAppBar"
+                android:src="@drawable/avatar"
+                android:scaleType="centerCrop"
+                android:background="@drawable/circle_background"
+                android:contentDescription="@string/user_avatar_description" />
+
+            <!-- NUEVO: TextView para Misión y Visión -->
+            <TextView
+                android:id="@+id/textMisionVision"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/avatarImage"
+                android:layout_marginTop="32dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/mision_vision"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+        </RelativeLayout>
+    </ScrollView>
+
+    <!-- MENÚ LATERAL -->
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
