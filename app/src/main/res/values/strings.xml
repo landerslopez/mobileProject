@@ -46,14 +46,10 @@
     <string name="title_vision">Visión</string>
     <string name="text_vision">Ser una universidad reconocida a nivel nacional e internacional por su calidad educativa, liderazgo en investigación y su contribución al desarrollo sostenible de la sociedad.</string>
 
-    <string name="mision_vision">
-    <![CDATA[
-    <b>@string/title_mision</b>: @string/text_mision
-
-    <b>@string/title_vision</b>: @string/text_vision
-    ]]>
-</string>
-
-
+    <!-- String plantilla con formato y parámetros -->
+    <string name="mision_vision"><![CDATA[
+        <b>%1$s:</b><br/>%2$s<br/><br/>
+        <b>%3$s:</b><br/>%4$s
+    ]]></string>
 
 </resources>

@@ -38,7 +38,19 @@
             android:src="@drawable/avatar"
             android:scaleType="centerCrop"
             android:background="@drawable/circle_background"
-            android:contentDescription="@string/user_avatar_description"/>
+            android:contentDescription="@string/user_avatar_description" />
+
+        <!-- NUEVO: Mensaje motivacional -->
+        <TextView
+            android:id="@+id/textMensajeMotivacional"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textNombre"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_large"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_medium" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
