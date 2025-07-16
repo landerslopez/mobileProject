@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoginApp"
         tools:targetApi="31">
+
         <activity
             android:name="com.grupoC.orgaedu.features.dashboard.ui.DashboardStudentActivity"
             android:exported="false" />
@@ -22,15 +23,21 @@
             android:name="com.grupoC.orgaedu.features.auth.ui.RegisterActivity"
             android:exported="false" />
 
+
+        <activity android:name=".features.courses.presentacion.ui.CourseListActivity"/>
+        <activity android:name=".features.courses.presentacion.ui.CreateCourseActivity"/>
+
+        <activity android:name=".features.courses.presentacion.ui.CourseDetailActivity"/>
+
         <activity
             android:name="com.grupoC.orgaedu.features.auth.ui.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
