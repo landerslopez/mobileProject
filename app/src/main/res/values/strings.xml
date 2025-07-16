@@ -29,4 +29,20 @@
     <string name="button_access">Acceder</string>
     <string name="no_account_register">¿No tienes cuenta? Regístrate</string>
 
+    <!-- Strings para menú docente -->
+    <string name="nav_inicio">Inicio</string>
+    <string name="nav_areas">Áreas</string>
+    <string name="nav_asistencia">Asistencia</string>
+
+    <string name="navigation_drawer_open">Abrir menú</string>
+    <string name="navigation_drawer_close">Cerrar menú</string>
+
+    <!-- Textos para InicioFragment -->
+    <string name="hello_admin">Hola, administrador</string>
+
+    <string name="title_mision">Misión</string>
+    <string name="text_mision">Formar profesionales competentes, éticos y comprometidos con la sociedad, promoviendo una educación integral basada en la excelencia académica, la innovación y la responsabilidad social.</string>
+
+    <string name="title_vision">Visión</string>
+    <string name="text_vision">Ser una universidad reconocida a nivel nacional e internacional por su calidad educativa, liderazgo en investigación y su contribución al desarrollo sostenible de la sociedad.</string>
 </resources>

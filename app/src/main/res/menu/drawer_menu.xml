@@ -4,11 +4,19 @@
         android:title="Inicio"
         android:icon="@drawable/home_ic" />
     <item
-        android:id="@+id/nav_areas"
-        android:title="Áreas"
-        android:icon="@drawable/baseline_dashboard_24" />
+        android:id="@+id/nav_mis_clases"
+        android:title="Mis Clases"
+        android:icon="@drawable/ic_classes" />
+    <item
+        android:id="@+id/nav_calificaciones"
+        android:title="Calificaciones"
+        android:icon="@drawable/ic_grades" />
     <item
         android:id="@+id/nav_asistencia"
         android:title="Asistencia"
         android:icon="@drawable/ic_checklist" />
+    <item
+        android:id="@+id/nav_configuracion"
+        android:title="Configuración"
+        android:icon="@drawable/ic_settings" />
 </menu>

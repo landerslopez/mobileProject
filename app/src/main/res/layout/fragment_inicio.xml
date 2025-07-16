@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/text_hello_admin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hello_admin"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingBottom="12dp" />
+
+        <TextView
+            android:id="@+id/text_mision_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_mision"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="16dp" />
+
+        <TextView
+            android:id="@+id/text_mision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_mision"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingTop="4dp" />
+
+        <TextView
+            android:id="@+id/text_vision_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_vision"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:paddingTop="16dp" />
+
+        <TextView
+            android:id="@+id/text_vision"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_vision"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingTop="4dp" />
+
+    </LinearLayout>
+</ScrollView>
