@@ -19,7 +19,7 @@ import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class, Task.class}, version = 4, exportSchema = false)
+@Database(entities = {User.class, Task.class}, version = 5, exportSchema = false)
 @TypeConverters({DateConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -62,7 +62,6 @@ public abstract class AppDatabase extends RoomDatabase {
                 adminUser.setUsername("admin");
                 adminUser.setPassword("admin");
                 adminUser.setRole("docente");
-                userDao.insert(adminUser);
 
                 User juanUser = new User();
                 juanUser.setNombre("Juan Pérez");
@@ -70,30 +69,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 juanUser.setUsername("juan");
                 juanUser.setPassword("12345");
                 juanUser.setRole("alumno");
-                userDao.insert(juanUser);
 
-                // --- ¡Insertar tareas de prueba! ---
-                final Task task1 = new Task();
-                task1.setTitulo("Tarea de Matemáticas");
-                task1.setDescripcion("Completar ejercicios del capítulo 3 del libro.");
-                // Establecer la fecha de vencimiento 5 días en el futuro
-                task1.setFechaVencimiento(new Date(System.currentTimeMillis() + 86400000L * 5));
-                task1.setIdCurso(1);
-                task1.setIdUsuarioAsignado(juanUser.getId()); // Asignar al usuario Juan
-                task1.setEstadoEntrega("Pendiente");
-                task1.setEstadoCompletado(false);
-                taskDao.insertar(task1);
-
-                final Task task2 = new Task(); // Usa el nombre de clase Task
-                task2.setTitulo("Propuesta de Proyecto");
-                task2.setDescripcion("Enviar la propuesta para el proyecto final.");
-                // Establecer la fecha de vencimiento 10 días en el futuro
-                task2.setFechaVencimiento(new Date(System.currentTimeMillis() + 86400000L * 10));
-                task2.setIdCurso(2);
-                task2.setIdUsuarioAsignado(juanUser.getId()); // Asignar al usuario Juan
-                task2.setEstadoEntrega("Pendiente");
-                task2.setEstadoCompletado(false);
-                taskDao.insertar(task2);
             });
         }
     };
