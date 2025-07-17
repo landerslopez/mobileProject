@@ -42,4 +42,18 @@
     <string name="nav_asistencia_title">Asistencia</string>
     <string name="nav_tareas_title">Tareas</string>
 
+    <!-- Textos para InicioFragment -->
+    <string name="hello_admin">Hola, administrador</string>
+
+    <string name="title_mision">Misión</string>
+    <string name="text_mision">Formar profesionales competentes, éticos y comprometidos con la sociedad, promoviendo una educación integral basada en la excelencia académica, la innovación y la responsabilidad social.</string>
+
+    <string name="title_vision">Visión</string>
+    <string name="text_vision">Ser una universidad reconocida a nivel nacional e internacional por su calidad educativa, liderazgo en investigación y su contribución al desarrollo sostenible de la sociedad.</string>
+
+    <!-- String plantilla con formato y parámetros -->
+    <string name="mision_vision"><![CDATA[
+        <b>%1$s:</b><br/>%2$s<br/><br/>
+        <b>%3$s:</b><br/>%4$s
+    ]]></string>
 </resources>

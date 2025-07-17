@@ -8,11 +8,16 @@
         android:title="@string/nav_areas_title"
         android:icon="@drawable/baseline_dashboard_24" />
     <item
+        android:id="@+id/nav_calificaciones"
+        android:title="Calificaciones"
+        android:icon="@drawable/ic_grades" />
+    <item
         android:id="@+id/nav_asistencia"
         android:title="@string/nav_asistencia_title"
         android:icon="@drawable/ic_checklist" />
+
     <item
-        android:id="@+id/nav_tareas"
-        android:title="@string/nav_tareas_title"
-        android:icon="@drawable/ic_task" />
+        android:id="@+id/nav_configuracion"
+        android:title="Configuración"
+        android:icon="@drawable/ic_settings" />
 </menu>

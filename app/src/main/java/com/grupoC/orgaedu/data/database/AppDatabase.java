@@ -62,6 +62,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 adminUser.setUsername("admin");
                 adminUser.setPassword("admin");
                 adminUser.setRole("docente");
+                userDao.insert(adminUser);
 
                 User juanUser = new User();
                 juanUser.setNombre("Juan Pérez");
@@ -69,6 +70,7 @@ public abstract class AppDatabase extends RoomDatabase {
                 juanUser.setUsername("juan");
                 juanUser.setPassword("12345");
                 juanUser.setRole("alumno");
+                userDao.insert(juanUser);
 
             });
         }

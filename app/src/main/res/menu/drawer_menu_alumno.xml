@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_inicio"
+        android:title="@string/nav_inicio_title"
+        android:icon="@drawable/home_ic" />
+    <item
+        android:id="@+id/nav_mis_clases"
+        android:title="Mis Clases"
+        android:icon="@drawable/ic_classes" />
+    <item
+        android:id="@+id/nav_mis_cursos"
+        android:title="Mis Cursos"
+        android:icon="@drawable/ic_cursos" />
+    <item
+        android:id="@+id/nav_asistencia"
+        android:title="@string/nav_asistencia_title"
+        android:icon="@drawable/ic_checklist" />
+    <item
+        android:id="@+id/nav_tareas"
+        android:title="@string/nav_tareas_title"
+        android:icon="@drawable/ic_task" />
+</menu>
